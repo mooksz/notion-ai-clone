@@ -34,7 +34,7 @@ export const buttonVariants = cva(
   }
 );
 
-export type ButtonProps = {
+type ButtonProps = {
   asChild?: boolean;
   ref?: Ref<HTMLButtonElement>;
 } & ButtonHTMLAttributes<HTMLButtonElement> &

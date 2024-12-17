@@ -11,7 +11,7 @@ export const Header: FC<HeaderProps> = (props) => {
   const { user } = useUser();
 
   return (
-    <header className="d-flex items-center justify-between p-5">
+    <header className="flex items-center justify-between p-5">
       {user && <h1 className="text-2xl">{user?.firstName}'s Space</h1>}
 
       {/* Breadcrumbs */}

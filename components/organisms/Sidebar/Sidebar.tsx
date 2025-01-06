@@ -1,3 +1,5 @@
+"use client";
+
 import {
   Sheet,
   SheetContent,
@@ -17,6 +19,7 @@ import {
   where,
 } from "firebase/firestore";
 import { db } from "@/firebase";
+import { SidebarOption } from "./SidebarOption";
 
 type SidebarProps = {};
 
@@ -70,11 +73,53 @@ export const Sidebar: FC<SidebarProps> = (props) => {
     <>
       <NewDocumentButton />
 
-      {/* My Document */}
-      {/* List... */}
+      <div className="flex py-4 flex-col space-y-4 md:max-w-36">
+        {/* My Document */}
+        {groupedData.owner.length === 0 ? (
+          <p className="text-gray-500 font-semibold text-sm">
+            No documents found
+          </p>
+        ) : (
+          <>
+            <h2 className="text-gray-500 font-semibold text-sm">
+              My documents
+            </h2>
+            {groupedData.owner.map((doc) => {
+              return (
+                <SidebarOption
+                  key={doc.id}
+                  id={doc.id}
+                  href={`/doc/${doc.id}`}
+                />
+              );
+            })}
+          </>
+        )}
+      </div>
 
-      {/* Shared with me */}
-      {/* List... */}
+      <div className="flex py-4 flex-col space-y-4 md:max-w-36">
+        {/* Shared with me */}
+        {groupedData.owner.length === 0 ? (
+          <p className="text-gray-500 font-semibold text-sm">
+            No documents found
+          </p>
+        ) : (
+          <>
+            <h2 className="text-gray-500 font-semibold text-sm">
+              Shared with me
+            </h2>
+            {groupedData.editor.map((doc) => {
+              return (
+                <SidebarOption
+                  key={doc.id}
+                  id={doc.id}
+                  href={`/doc/${doc.id}`}
+                />
+              );
+            })}
+          </>
+        )}
+      </div>
     </>
   );
 

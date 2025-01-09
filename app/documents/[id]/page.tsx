@@ -1,9 +1,9 @@
 import { Document } from "@/components/organisms/Document/Document";
 
 type DocumentPageProps = {
-  params: {
+  params: Promise<{
     id: string;
-  };
+  }>;
 };
 
 export default async function DocumentPage(props: DocumentPageProps) {

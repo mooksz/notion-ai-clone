@@ -3,6 +3,8 @@
 import { FC } from "react";
 import { motion } from "framer-motion";
 import { stringToColor } from "@/lib/stringToColor";
+import { isDarkColor } from "@/lib/isDarkColor";
+import { cn } from "@/lib/cn";
 
 type LiveCursorProps = {
   userInfo: Liveblocks["UserMeta"]["info"];
@@ -13,6 +15,7 @@ export const LiveCursor: FC<LiveCursorProps> = (props) => {
   const { userInfo, cursor } = props;
 
   const color = stringToColor(userInfo.email || "1");
+  const colorIsDark = isDarkColor(color);
 
   return (
     <motion.div
@@ -46,7 +49,10 @@ export const LiveCursor: FC<LiveCursorProps> = (props) => {
 
       {(userInfo.name || userInfo.email) && (
         <div
-          className="py-1 px-2 font-semibold text-sm rounded-full"
+          className={cn(
+            "py-1 px-2 font-semibold text-sm rounded-full",
+            colorIsDark ? "text-white" : "text-black"
+          )}
           style={{ backgroundColor: color }}
         >
           {userInfo.name || userInfo.email}

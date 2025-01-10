@@ -89,7 +89,7 @@ export const Sidebar: FC<SidebarProps> = (props) => {
                 <SidebarOption
                   key={doc.id}
                   id={doc.id}
-                  href={`/doc/${doc.id}`}
+                  href={`/documents/${doc.id}`}
                 />
               );
             })}
@@ -113,7 +113,7 @@ export const Sidebar: FC<SidebarProps> = (props) => {
                 <SidebarOption
                   key={doc.id}
                   id={doc.id}
-                  href={`/doc/${doc.id}`}
+                  href={`/documents/${doc.id}`}
                 />
               );
             })}

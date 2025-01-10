@@ -26,7 +26,7 @@ export const NewDocumentButton: FC<NewDocumentButtonProps> = (props) => {
         return;
       }
 
-      router.push(`/doc/${docId}`);
+      router.push(`/documents/${docId}`);
     });
   };
 

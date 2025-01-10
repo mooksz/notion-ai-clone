@@ -17,7 +17,7 @@ export const LiveCursor: FC<LiveCursorProps> = (props) => {
   return (
     <motion.div
       style={{ top: cursor.y, left: cursor.x }}
-      className="h-4 w-4 rounded-full absolute z-50 pointer-events-none"
+      className="absolute z-50 pointer-events-none"
       initial={{
         scale: 0,
         opacity: 0,
@@ -36,7 +36,7 @@ export const LiveCursor: FC<LiveCursorProps> = (props) => {
         fill={color}
         strokeWidth="1"
         viewBox="0 0 16 16"
-        className={`h-6 w-6 text-[${color}] transform -rotate-[70deg] -translate-x-[12px] -translate-y-[10px] stroke-[${color}]`}
+        className={`h-6 w-6 text-[${color}] transform -rotate-[70deg] -translate-x-[10px] stroke-[${color}]`}
         height="1.5rem"
         width="1.5rem"
         xmlns="http://www.w3.org/2000/svg"
@@ -45,7 +45,10 @@ export const LiveCursor: FC<LiveCursorProps> = (props) => {
       </svg>
 
       {(userInfo.name || userInfo.email) && (
-        <div style={{ backgroundColor: color }}>
+        <div
+          className="py-1 px-2 font-semibold text-sm rounded-full"
+          style={{ backgroundColor: color }}
+        >
           {userInfo.name || userInfo.email}
         </div>
       )}

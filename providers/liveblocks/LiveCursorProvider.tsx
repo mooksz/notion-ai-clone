@@ -3,6 +3,7 @@
 import { LiveCursor } from "@/components/molecules/LiveCursor/LiveCursor";
 import { useUpdateMyPresence } from "@liveblocks/react/suspense";
 import { useOthers } from "@liveblocks/react/suspense";
+import { AnimatePresence } from "framer-motion";
 import type { FC, ReactNode, PointerEvent } from "react";
 
 type LiveCursorProviderProps = {
@@ -26,19 +27,21 @@ export const LiveCursorProvider: FC<LiveCursorProviderProps> = (props) => {
 
   return (
     <div onPointerMove={onPointerMove} onPointerLeave={onPointerLeave}>
-      {others.map((person) => {
-        const { presence, connectionId, info } = person;
+      <AnimatePresence>
+        {others.map((person) => {
+          const { presence, connectionId, info } = person;
 
-        if (presence.cursor === null) return null;
+          if (presence.cursor === null) return null;
 
-        return (
-          <LiveCursor
-            key={connectionId}
-            userInfo={info}
-            cursor={presence.cursor}
-          />
-        );
-      })}
+          return (
+            <LiveCursor
+              key={connectionId}
+              userInfo={info}
+              cursor={presence.cursor}
+            />
+          );
+        })}
+      </AnimatePresence>
 
       {children}
     </div>

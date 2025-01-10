@@ -1,20 +1,33 @@
 "use client";
 
 import { useRoom } from "@liveblocks/react";
-import { FC, useState } from "react";
+import { useEffect, useState } from "react";
 import * as Y from "yjs";
 import { LiveblocksYjsProvider } from "@liveblocks/yjs";
 import { MoonIcon, SunIcon } from "lucide-react";
 import { Button } from "@/components/atoms/Button/Button";
 import { cn } from "@/lib/cn";
+import { BlockNote } from "@/components/molecules/BlockNote/BlockNote";
 
-type CollaborativeEditorProps = {};
-
-export const CollaborativeEditor: FC<CollaborativeEditorProps> = () => {
+export const CollaborativeEditor = () => {
   const room = useRoom();
   const [document, setDocument] = useState<Y.Doc>();
   const [provider, setProvider] = useState<LiveblocksYjsProvider>();
   const [darkMode, setDarkMode] = useState(false);
+
+  useEffect(() => {
+    const yDocument = new Y.Doc();
+    const yProvider = new LiveblocksYjsProvider(room, yDocument);
+    setDocument(yDocument);
+    setProvider(yProvider);
+
+    return () => {
+      yDocument?.destroy();
+      yProvider?.destroy();
+    };
+  }, [room]);
+
+  if (!document || !provider) return null;
 
   return (
     <div className="max-w-6xl mx-auto">
@@ -36,6 +49,7 @@ export const CollaborativeEditor: FC<CollaborativeEditorProps> = () => {
       </div>
 
       {/** BlockNote */}
+      <BlockNote document={document} provider={provider} darkMode={darkMode} />
     </div>
   );
 };

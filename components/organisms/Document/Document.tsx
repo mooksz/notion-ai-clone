@@ -39,7 +39,7 @@ export const Document: FC<DocumentProps> = (props) => {
   }
 
   return (
-    <div>
+    <div className="flex-1 h-full bg-white p-5">
       <div className="flex max-w-6xl mx-auto justify-between pb-5">
         {/* Update title */}
         <form

@@ -6,6 +6,7 @@ import { db } from "@/firebase";
 import { updateDoc, doc } from "firebase/firestore";
 import { FC, FormEvent, useEffect, useState, useTransition } from "react";
 import { useDocumentData } from "react-firebase-hooks/firestore";
+import { CollaborativeEditor } from "../CollaborativeEditor/CollaborativeEditor";
 
 type DocumentProps = {
   id: string;
@@ -63,7 +64,9 @@ export const Document: FC<DocumentProps> = (props) => {
         {/* Avatars */}
       </div>
 
-      {/* Collaborative editor */}
+      <hr className="pb-10" />
+
+      <CollaborativeEditor />
     </div>
   );
 };

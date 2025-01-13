@@ -15,7 +15,7 @@ export const LiveblocksProvider: FC<LiveblocksProviderProps> = (props) => {
   }
 
   return (
-    <LiveblocksLibProvider throttle={16} authEndpoint={"/auth-endpoint"}>
+    <LiveblocksLibProvider throttle={16} authEndpoint={"/liveblocks-auth"}>
       {children}
     </LiveblocksLibProvider>
   );

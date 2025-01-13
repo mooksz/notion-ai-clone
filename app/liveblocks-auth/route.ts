@@ -34,7 +34,7 @@ export async function POST(req: NextRequest) {
     },
   });
 
-  /** Issues? 2:45 */
+  /** Issues? 2:45:00 */
   const roomRef = adminDb.doc(
     `users/${parsedSessionClaims.data.email}/rooms/${room}`
   );

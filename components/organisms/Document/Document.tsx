@@ -7,6 +7,8 @@ import { updateDoc, doc } from "firebase/firestore";
 import { FC, FormEvent, useEffect, useState, useTransition } from "react";
 import { useDocumentData } from "react-firebase-hooks/firestore";
 import { CollaborativeEditor } from "../CollaborativeEditor/CollaborativeEditor";
+import { useDocumentOwner } from "@/hooks/useDocumentOwner";
+import { DeleteDocumentButton } from "@/components/molecules/DeleteDocumentButton/DeleteDocumentButton";
 
 type DocumentProps = {
   id: string;
@@ -17,6 +19,7 @@ export const Document: FC<DocumentProps> = (props) => {
   const [data, loading, error] = useDocumentData(doc(db, "documents", id));
   const [titleInputValue, setTitleInputValue] = useState("");
   const [isUpdatingTitle, startTitleUpdate] = useTransition();
+  const { isOwner } = useDocumentOwner();
 
   useEffect(() => {
     if (!data) {
@@ -54,8 +57,14 @@ export const Document: FC<DocumentProps> = (props) => {
           <Button disabled={isUpdatingTitle} type="submit">
             {isUpdatingTitle ? "Updating" : "Update"}
           </Button>
-          {/** If isOnwer && InivteUser, DeleteDocument */}
         </form>
+
+        {/** CRUD actions if isOwner */}
+        {isOwner && (
+          <>
+            <DeleteDocumentButton />
+          </>
+        )}
       </div>
 
       <div>

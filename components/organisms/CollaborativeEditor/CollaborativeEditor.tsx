@@ -1,6 +1,6 @@
 "use client";
 
-import { useRoom } from "@liveblocks/react";
+import { useRoom } from "@liveblocks/react/suspense";
 import { useEffect, useState } from "react";
 import * as Y from "yjs";
 import { LiveblocksYjsProvider } from "@liveblocks/yjs";

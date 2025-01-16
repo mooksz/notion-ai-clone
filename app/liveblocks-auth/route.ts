@@ -44,9 +44,12 @@ export async function POST(req: NextRequest) {
   if (!roomDoc.exists) {
     return NextResponse.json(
       {
-        message: "User is not in this room",
+        error: "User not in room",
       },
-      { status: 403 }
+      {
+        status: 403,
+        headers: { "Content-Type": "application/json" },
+      }
     );
   }
 

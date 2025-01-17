@@ -9,6 +9,7 @@ import { useDocumentData } from "react-firebase-hooks/firestore";
 import { CollaborativeEditor } from "../CollaborativeEditor/CollaborativeEditor";
 import { useDocumentOwner } from "@/hooks/useDocumentOwner";
 import { DeleteDocumentButton } from "@/components/molecules/DeleteDocumentButton/DeleteDocumentButton";
+import { usePrepareFirebaseAuth } from "@/hooks/usePrepareFirebaseAuth";
 
 type DocumentProps = {
   id: string;
@@ -20,6 +21,7 @@ export const Document: FC<DocumentProps> = (props) => {
   const [titleInputValue, setTitleInputValue] = useState("");
   const [isUpdatingTitle, startTitleUpdate] = useTransition();
   const { isOwner } = useDocumentOwner();
+  usePrepareFirebaseAuth();
 
   useEffect(() => {
     if (!data) {

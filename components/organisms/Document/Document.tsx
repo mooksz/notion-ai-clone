@@ -11,6 +11,7 @@ import { useDocumentOwner } from "@/hooks/useDocumentOwner";
 import { DeleteDocumentButton } from "@/components/molecules/DeleteDocumentButton/DeleteDocumentButton";
 import { usePrepareFirebaseAuth } from "@/hooks/usePrepareFirebaseAuth";
 import { InviteUsersToDocument } from "@/components/molecules/InviteUsersToDocument/InviteUsersToDocument";
+import { ManageDocumentUsers } from "@/components/molecules/ManageDocumentUsers/ManageDocumentUsers";
 
 type DocumentProps = {
   id: string;
@@ -46,7 +47,7 @@ export const Document: FC<DocumentProps> = (props) => {
 
   return (
     <div className="flex-1 h-full bg-white p-5">
-      <div className="flex gap-2 max-w-6xl mx-auto justify-between pb-5">
+      <div className="max-w-6xl mx-auto pb-5 flex flex-wrap gap-2">
         {/* Update title */}
         <form
           className="flex flex-1 space-x-2"
@@ -64,15 +65,16 @@ export const Document: FC<DocumentProps> = (props) => {
 
         {/** CRUD actions if isOwner */}
         {isOwner && (
-          <>
+          <div className="flex gap-2 w-full justify-end">
             <InviteUsersToDocument />
             <DeleteDocumentButton />
-          </>
+          </div>
         )}
       </div>
 
-      <div>
+      <div className="flex max-w-6xl mx-auto justify-between items-center mb-5">
         {/*  Manage users*/}
+        {isOwner && <ManageDocumentUsers />}
 
         {/* Avatars */}
       </div>

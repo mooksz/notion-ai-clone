@@ -106,3 +106,24 @@ export async function inviteUserToDocument(roomId: string, email: string) {
     return { success: false };
   }
 }
+
+export async function removeUserFromDocument(roomId: string, email: string) {
+  auth.protect();
+
+  /** WOULDDO: validate email and room id */
+  console.log(`Removing user ${email} to document ${roomId}`);
+
+  try {
+    await adminDb
+      .collection("users")
+      .doc(email)
+      .collection("rooms")
+      .doc(roomId)
+      .delete();
+
+    return { success: true };
+  } catch (error) {
+    console.log(error);
+    return { success: false };
+  }
+}

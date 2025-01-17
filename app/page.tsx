@@ -1,4 +1,3 @@
-import { LiveCursor } from "@/components/molecules/LiveCursor/LiveCursor";
 import { ArrowLeftCircle } from "lucide-react";
 
 export default function Home() {

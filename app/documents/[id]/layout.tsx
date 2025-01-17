@@ -15,6 +15,8 @@ export async function PageLayout(props: PageLayoutProps) {
   const { children, params } = props;
   const { id } = await params;
 
+  /** WOULDO: is user allowed in document function */
+
   return <RoomProvider roomId={id}>{children}</RoomProvider>;
 }
 

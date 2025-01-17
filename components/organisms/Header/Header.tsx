@@ -1,15 +1,23 @@
 "use client";
 
 import { Breadcrumbs } from "@/components/molecules/Breadcrumbs/Breadcrumbs";
+import { firebaseAuth } from "@/firebase";
 import { SignedIn, SignInButton, UserButton } from "@clerk/clerk-react";
 import { SignedOut, useUser } from "@clerk/nextjs";
-import { FC } from "react";
+import { FC, useEffect } from "react";
 
 type HeaderProps = {};
 
 export const Header: FC<HeaderProps> = (props) => {
   const {} = props;
   const { user } = useUser();
+
+  useEffect(() => {
+    if (user) return;
+
+    /** If there is no user object we should sign out of firebase */
+    firebaseAuth.signOut();
+  }, [user]);
 
   return (
     <header className="flex items-center justify-between p-5">

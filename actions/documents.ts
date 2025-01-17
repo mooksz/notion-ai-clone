@@ -80,3 +80,29 @@ export async function deleteDocument(documentId: string) {
     return { success: false };
   }
 }
+
+export async function inviteUserToDocument(roomId: string, email: string) {
+  auth.protect();
+
+  /** WOULDDO: validate email and room id */
+  console.log(`Inviting user ${email} to document ${roomId}`);
+
+  try {
+    await adminDb
+      .collection("users")
+      .doc(email)
+      .collection("rooms")
+      .doc(roomId)
+      .set({
+        userId: email,
+        role: "editor",
+        createdAt: new Date().toISOString(),
+        roomId,
+      }); /** WOULDDO: type data */
+
+    return { success: true };
+  } catch (error) {
+    console.log(error);
+    return { success: false };
+  }
+}

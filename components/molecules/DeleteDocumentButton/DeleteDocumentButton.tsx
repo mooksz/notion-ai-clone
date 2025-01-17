@@ -73,7 +73,7 @@ export const DeleteDocumentButton: FC<DeleteDocumentButtonProps> = (props) => {
             variant="destructive"
             disabled={isDeleting}
           >
-            {isDeleting ? "Deleting" : "Delete"}
+            {isDeleting ? "Deleting..." : "Delete"}
           </Button>
           <AlertDialogCancel>Cancel</AlertDialogCancel>
         </AlertDialogFooter>

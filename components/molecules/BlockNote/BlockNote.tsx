@@ -47,7 +47,6 @@ export const BlockNote: FC<BlockNoteProps> = (props) => {
         theme={darkMode ? "dark" : "light"}
         onChange={() => {
           /** WOULD DO: Save to DB */
-          console.log(editor.document);
         }}
       />
     </div>

@@ -12,6 +12,7 @@ import { DeleteDocumentButton } from "@/components/molecules/DeleteDocumentButto
 import { usePrepareFirebaseAuth } from "@/hooks/usePrepareFirebaseAuth";
 import { InviteUsersToDocument } from "@/components/molecules/InviteUsersToDocument/InviteUsersToDocument";
 import { ManageDocumentUsers } from "@/components/molecules/ManageDocumentUsers/ManageDocumentUsers";
+import { UsersCurrentlyInDocument } from "@/components/molecules/UsersCurrentlyInDocument/UsersCurrentlyInDocument";
 
 type DocumentProps = {
   id: string;
@@ -77,6 +78,7 @@ export const Document: FC<DocumentProps> = (props) => {
         {isOwner && <ManageDocumentUsers />}
 
         {/* Avatars */}
+        <UsersCurrentlyInDocument />
       </div>
 
       <hr className="pb-10" />

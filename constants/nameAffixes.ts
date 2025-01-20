@@ -1,4 +1,4 @@
-export const dutchNameAffixes = [
+export const DUTCH_NAME_AFFIXES = [
   "van",
   "van de",
   "van den",
@@ -16,4 +16,4 @@ export const dutchNameAffixes = [
   "aan",
 ] as const;
 
-export const nameAffixes = [...dutchNameAffixes] as const;
+export const NAME_AFFIXES = [...DUTCH_NAME_AFFIXES] as const;

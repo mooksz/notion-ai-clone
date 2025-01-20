@@ -45,6 +45,10 @@ export const BlockNote: FC<BlockNoteProps> = (props) => {
         className="min-h-screen"
         editor={editor}
         theme={darkMode ? "dark" : "light"}
+        onChange={() => {
+          /** WOULD DO: Save to DB */
+          console.log(editor.document);
+        }}
       />
     </div>
   );
